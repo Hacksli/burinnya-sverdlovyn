@@ -8,199 +8,192 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-:root{--blue-900:#0c1929;--blue-800:#0f2744;--blue-700:#1a3a5c;--blue-600:#1e4976;--blue-500:#2563eb;--blue-400:#38bdf8;--blue-300:#7dd3fc;--blue-100:#dbeafe;--blue-50:#eff6ff;--slate-900:#0f172a;--slate-700:#334155;--slate-500:#64748b;--slate-300:#cbd5e1;--slate-100:#f1f5f9;--green-500:#16a34a;--green-400:#22c55e;--red-500:#dc2626;--radius:20px;--shadow-lg:0 20px 60px rgba(0,0,0,.1);--shadow-xl:0 30px 80px rgba(0,0,0,.15)}
+:root{--sky-50:#f0f9ff;--sky-100:#e0f2fe;--sky-200:#bae6fd;--sky-300:#7dd3fc;--sky-400:#38bdf8;--sky-500:#0ea5e9;--sky-600:#0284c7;--sky-700:#0369a1;--sky-800:#075985;--sky-900:#0c4a6e;--cyan-50:#ecfeff;--cyan-100:#cffafe;--cyan-400:#22d3ee;--slate-50:#f8fafc;--slate-100:#f1f5f9;--slate-200:#e2e8f0;--slate-400:#94a3b8;--slate-500:#64748b;--slate-600:#475569;--slate-700:#334155;--slate-800:#1e293b;--slate-900:#0f172a;--white:#ffffff;--green-500:#10b981;--green-600:#059669;--red-500:#ef4444;--radius:20px}
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Inter',system-ui,sans-serif;color:var(--slate-900);line-height:1.7;background:#f0f4f8;overflow-x:hidden}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;color:var(--slate-800);line-height:1.7;background:var(--sky-50);overflow-x:hidden}
 .container{max-width:1200px;margin:0 auto;padding:0 24px}
 
 /* ===== NAVBAR ===== */
-.navbar{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 0;transition:all .4s}
-.navbar.scrolled{background:rgba(12,25,41,.95);backdrop-filter:blur(20px);padding:10px 0;box-shadow:0 4px 30px rgba(0,0,0,.2)}
+.navbar{position:fixed;top:0;left:0;right:0;z-index:100;padding:14px 0;transition:all .4s}
+.navbar.scrolled{background:rgba(240,249,255,.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--sky-200);padding:10px 0}
 .nav-inner{display:flex;align-items:center;justify-content:space-between}
-.nav-logo{color:#fff;font-size:1.1rem;font-weight:800;text-decoration:none;display:flex;align-items:center;gap:10px}
-.nav-logo svg{width:32px;height:32px}
-.nav-phone{display:flex;align-items:center;gap:8px;color:#fff;text-decoration:none;font-weight:700;font-size:.95rem;background:rgba(255,255,255,.1);padding:8px 20px;border-radius:50px;border:1px solid rgba(255,255,255,.15);transition:all .3s}
-.nav-phone:hover{background:var(--green-500);border-color:var(--green-500)}
+.nav-logo{color:var(--sky-800);font-size:1rem;font-weight:800;text-decoration:none;display:flex;align-items:center;gap:8px;transition:color .3s}
+.navbar:not(.scrolled) .nav-logo{color:#fff}
+.nav-logo svg{width:28px;height:28px}
+.nav-phone{display:flex;align-items:center;gap:8px;text-decoration:none;font-weight:700;font-size:.9rem;padding:10px 22px;border-radius:50px;transition:all .3s}
+.navbar:not(.scrolled) .nav-phone{color:#fff;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2)}
+.navbar.scrolled .nav-phone{color:#fff;background:var(--sky-500);border:1px solid var(--sky-500)}
+.nav-phone:hover{transform:translateY(-1px)}
 .nav-phone svg{width:16px;height:16px}
 
-/* ===== HERO ===== */
-.hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;background:var(--blue-900)}
-.hero-bg{position:absolute;inset:0;background:url('img/drilling1.jpg') center/cover;opacity:.2;will-change:transform}
-.hero-overlay{position:absolute;inset:0;background:radial-gradient(ellipse at 30% 20%,rgba(37,99,235,.15) 0%,transparent 60%),radial-gradient(ellipse at 70% 80%,rgba(56,189,248,.1) 0%,transparent 50%),linear-gradient(180deg,rgba(12,25,41,.5) 0%,rgba(15,39,68,.7) 50%,rgba(26,58,92,.8) 100%)}
-.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:60px 60px}
-.hero-particles{position:absolute;inset:0;overflow:hidden;pointer-events:none}
-.particle{position:absolute;background:rgba(255,255,255,.25);border-radius:50%;animation:float linear infinite}
-@keyframes float{0%{transform:translateY(100vh) scale(0);opacity:0}10%{opacity:1}90%{opacity:1}100%{transform:translateY(-10vh) scale(1);opacity:0}}
-.hero-glow{position:absolute;width:500px;height:500px;border-radius:50%;filter:blur(120px);opacity:.15;pointer-events:none}
-.hero-glow-1{background:var(--blue-500);top:-10%;left:-5%}
-.hero-glow-2{background:var(--blue-400);bottom:-10%;right:-5%}
-.hero-content{position:relative;z-index:2;padding:40px 20px;max-width:850px}
-.hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.08);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.12);color:var(--blue-300);font-size:.8rem;font-weight:600;padding:8px 22px;border-radius:50px;letter-spacing:1px;text-transform:uppercase;margin-bottom:28px;animation:fadeDown .8s ease-out}
-.hero-badge::before{content:'';width:6px;height:6px;background:var(--green-400);border-radius:50%;animation:blink 2s infinite}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
-.hero h1{font-size:clamp(2.5rem,7vw,4.5rem);font-weight:900;color:#fff;margin-bottom:20px;line-height:1.05;letter-spacing:-.02em;animation:fadeDown 1s ease-out}
-.hero h1 span{background:linear-gradient(135deg,var(--blue-300),var(--blue-400));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.hero .subtitle{font-size:clamp(1.05rem,2vw,1.25rem);color:rgba(255,255,255,.7);margin-bottom:36px;max-width:600px;margin-left:auto;margin-right:auto;animation:fadeDown 1.2s ease-out}
-.hero-price{animation:fadeUp 1s ease-out}
-.price-tag{display:inline-flex;align-items:baseline;gap:4px;background:linear-gradient(135deg,var(--red-500),#ef4444);color:#fff;font-weight:900;padding:20px 48px;border-radius:100px;box-shadow:0 8px 40px rgba(220,38,38,.35),inset 0 1px 0 rgba(255,255,255,.2);font-size:clamp(1.6rem,4vw,2.4rem);animation:pulse 3s ease-in-out infinite}
-.price-tag small{font-size:.5em;font-weight:600;opacity:.9}
-@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.02)}}
-.hero-cta{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:36px;animation:fadeUp 1.2s ease-out}
-.btn{display:inline-flex;align-items:center;gap:10px;font-family:inherit;font-size:1.05rem;font-weight:700;padding:16px 36px;border-radius:60px;text-decoration:none;transition:all .35s cubic-bezier(.4,0,.2,1);cursor:pointer;border:none;position:relative;overflow:hidden}
-.btn::after{content:'';position:absolute;inset:0;background:linear-gradient(rgba(255,255,255,.15),transparent);opacity:0;transition:opacity .3s}
-.btn:hover::after{opacity:1}
-.btn-primary{background:var(--green-500);color:#fff;box-shadow:0 4px 25px rgba(22,163,74,.35)}
-.btn-primary:hover{transform:translateY(-3px);box-shadow:0 8px 35px rgba(22,163,74,.45)}
-.btn-ghost{background:rgba(255,255,255,.06);backdrop-filter:blur(10px);color:#fff;border:1.5px solid rgba(255,255,255,.2)}
-.btn-ghost:hover{background:rgba(255,255,255,.12);transform:translateY(-3px)}
-.btn svg{width:20px;height:20px;flex-shrink:0}
-.scroll-hint{position:absolute;bottom:36px;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:8px;color:rgba(255,255,255,.4);font-size:.7rem;letter-spacing:2px;text-transform:uppercase}
-.scroll-line{width:1px;height:40px;background:linear-gradient(transparent,rgba(255,255,255,.4));animation:scrollLine 2s infinite}
-@keyframes scrollLine{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+/* ===== FULLSCREEN BLOCKS ===== */
+.block{min-height:100svh;display:flex;align-items:center;position:relative;overflow:hidden;padding:80px 0}
 
-/* ===== WAVE DIVIDER ===== */
-.wave-divider{position:relative;margin-top:-1px}
-.wave-divider svg{display:block;width:100%}
+/* ===== HERO ===== */
+.hero{background:linear-gradient(160deg,var(--sky-800) 0%,var(--sky-600) 40%,var(--sky-400) 100%);text-align:center;justify-content:center}
+.hero-mesh{position:absolute;inset:0;background-image:radial-gradient(at 20% 30%,rgba(255,255,255,.08) 0%,transparent 50%),radial-gradient(at 80% 70%,rgba(56,189,248,.15) 0%,transparent 50%);pointer-events:none}
+.hero-waves{position:absolute;bottom:0;left:0;right:0;pointer-events:none}
+.hero-waves svg{display:block;width:100%;height:auto}
+.hero-particles{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.particle{position:absolute;background:rgba(255,255,255,.2);border-radius:50%;animation:floatUp linear infinite}
+@keyframes floatUp{0%{transform:translateY(100svh) scale(0);opacity:0}10%{opacity:1}90%{opacity:.5}100%{transform:translateY(-5vh) scale(1);opacity:0}}
+.hero-content{position:relative;z-index:2;padding:0 20px;max-width:800px;margin:0 auto}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.12);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.15);color:var(--sky-100);font-size:.75rem;font-weight:600;padding:8px 20px;border-radius:50px;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:28px;animation:fadeIn .8s}
+.hero-badge::before{content:'';width:6px;height:6px;background:var(--green-500);border-radius:50%;animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.hero h1{font-size:clamp(2.4rem,7vw,4.2rem);font-weight:900;color:#fff;margin-bottom:18px;line-height:1.08;letter-spacing:-.03em;animation:fadeIn 1s}
+.hero h1 em{font-style:normal;color:var(--sky-200)}
+.hero .subtitle{font-size:clamp(1rem,2vw,1.2rem);color:rgba(255,255,255,.75);margin-bottom:36px;max-width:540px;margin-left:auto;margin-right:auto;animation:fadeIn 1.2s}
+.price-pill{display:inline-flex;align-items:baseline;gap:4px;background:#fff;color:var(--sky-700);font-weight:900;padding:18px 44px;border-radius:100px;font-size:clamp(1.5rem,4vw,2.2rem);box-shadow:0 8px 40px rgba(0,0,0,.12);animation:fadeUp 1s}
+.price-pill small{font-size:.45em;font-weight:600;color:var(--slate-500)}
+.hero-cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:32px;animation:fadeUp 1.2s}
+.btn{display:inline-flex;align-items:center;gap:10px;font-family:inherit;font-size:1rem;font-weight:700;padding:15px 32px;border-radius:60px;text-decoration:none;transition:all .3s;cursor:pointer;border:none}
+.btn svg{width:18px;height:18px;flex-shrink:0}
+.btn-white{background:#fff;color:var(--sky-700);box-shadow:0 4px 20px rgba(0,0,0,.08)}
+.btn-white:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,0,0,.12)}
+.btn-outline{background:transparent;color:#fff;border:2px solid rgba(255,255,255,.3)}
+.btn-outline:hover{background:rgba(255,255,255,.1);transform:translateY(-2px)}
+.btn-sky{background:var(--sky-500);color:#fff;box-shadow:0 4px 20px rgba(14,165,233,.3)}
+.btn-sky:hover{background:var(--sky-600);transform:translateY(-2px)}
+.scroll-hint{position:absolute;bottom:100px;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:8px;color:rgba(255,255,255,.4);font-size:.65rem;letter-spacing:3px;text-transform:uppercase}
+.scroll-line{width:1px;height:36px;background:linear-gradient(transparent,rgba(255,255,255,.4));animation:scrollPulse 2s infinite}
+@keyframes scrollPulse{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
 
 /* ===== STATS ===== */
-.stats-section{background:var(--blue-900);padding:60px 0;position:relative;overflow:hidden}
-.stats-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(37,99,235,.15),transparent 70%)}
-.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.06);border-radius:var(--radius);overflow:hidden}
-.stat-card{background:rgba(255,255,255,.03);padding:40px 20px;text-align:center;position:relative;transition:background .3s}
-.stat-card:hover{background:rgba(255,255,255,.06)}
-.stat-icon{width:48px;height:48px;margin:0 auto 16px;border-radius:12px;display:flex;align-items:center;justify-content:center}
+.stats-block{background:var(--white);min-height:auto;padding:0}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr)}
+.stat-card{padding:48px 20px;text-align:center;position:relative;transition:background .3s}
+.stat-card:hover{background:var(--sky-50)}
+.stat-card::after{content:'';position:absolute;top:20%;right:0;bottom:20%;width:1px;background:var(--sky-100)}
+.stat-card:last-child::after{display:none}
+.stat-icon{width:52px;height:52px;margin:0 auto 14px;border-radius:14px;display:flex;align-items:center;justify-content:center}
 .stat-icon svg{width:24px;height:24px;stroke:#fff;fill:none;stroke-width:2}
-.stat-icon-1{background:linear-gradient(135deg,#1e40af,#2563eb)}
-.stat-icon-2{background:linear-gradient(135deg,#b91c1c,#dc2626)}
-.stat-icon-3{background:linear-gradient(135deg,#b45309,#d97706)}
-.stat-icon-4{background:linear-gradient(135deg,#047857,#059669)}
-.stat-number{font-size:clamp(2rem,4vw,2.8rem);font-weight:900;color:#fff;line-height:1.1}
-.stat-number span{font-size:.5em;font-weight:600;color:var(--blue-300)}
-.stat-label{font-size:.85rem;color:var(--slate-500);margin-top:6px;font-weight:500}
-@media(max-width:768px){.stats-grid{grid-template-columns:repeat(2,1fr)}}
+.si-1{background:linear-gradient(135deg,var(--sky-400),var(--sky-500))}
+.si-2{background:linear-gradient(135deg,var(--sky-500),var(--sky-600))}
+.si-3{background:linear-gradient(135deg,var(--cyan-400),var(--sky-400))}
+.si-4{background:linear-gradient(135deg,var(--green-500),var(--green-600))}
+.stat-number{font-size:clamp(1.8rem,3.5vw,2.4rem);font-weight:900;color:var(--sky-800);line-height:1.1}
+.stat-number span{font-size:.45em;font-weight:600;color:var(--sky-400)}
+.stat-label{font-size:.8rem;color:var(--slate-400);margin-top:4px;font-weight:500}
+@media(max-width:768px){.stats-grid{grid-template-columns:repeat(2,1fr)}.stat-card::after{display:none}.stat-card{border-bottom:1px solid var(--sky-100)}}
 
-/* ===== SECTION BASE ===== */
-.section{padding:100px 0;position:relative;overflow:hidden}
-.section-dark{background:var(--blue-900);color:#fff}
-.section-white{background:#fff}
-.section-gray{background:var(--slate-100)}
-.section-header{text-align:center;margin-bottom:60px;position:relative;z-index:2}
-.section-label{display:inline-flex;align-items:center;gap:6px;font-size:.75rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--blue-500);margin-bottom:12px}
-.section-dark .section-label{color:var(--blue-300)}
-.section-label::before,.section-label::after{content:'';width:20px;height:1.5px;background:currentColor;opacity:.5}
-h2{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;letter-spacing:-.02em;line-height:1.15;margin-bottom:16px}
-.section-dark h2{color:#fff}
-.section-desc{font-size:1.1rem;color:var(--slate-500);max-width:560px;margin:0 auto}
-.section-dark .section-desc{color:rgba(255,255,255,.6)}
+/* ===== SECTION COMMON ===== */
+.section-header{text-align:center;margin-bottom:56px}
+.section-tag{display:inline-flex;align-items:center;gap:6px;font-size:.7rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--sky-500);margin-bottom:10px}
+.section-tag::before,.section-tag::after{content:'';width:16px;height:1.5px;background:var(--sky-300)}
+.dark-section .section-tag{color:var(--sky-300)}
+h2{font-size:clamp(1.8rem,4vw,2.6rem);font-weight:900;letter-spacing:-.02em;line-height:1.12;margin-bottom:14px}
+.dark-section h2{color:#fff}
+.section-desc{font-size:1.05rem;color:var(--slate-500);max-width:520px;margin:0 auto}
+.dark-section .section-desc{color:rgba(255,255,255,.6)}
 
-/* ===== GALLERY ===== */
-.gallery-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:28px}
-.gallery-item{position:relative;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-lg);cursor:pointer;aspect-ratio:4/3}
-.gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.4,0,.2,1)}
-.gallery-item:hover img{transform:scale(1.1)}
-.gallery-overlay{position:absolute;inset:0;background:linear-gradient(0deg,rgba(12,25,41,.85) 0%,rgba(12,25,41,.1) 50%,transparent);display:flex;flex-direction:column;justify-content:flex-end;padding:32px}
-.gallery-overlay h3{color:#fff;font-size:1.3rem;font-weight:800;margin-bottom:6px}
-.gallery-overlay p{color:rgba(255,255,255,.75);font-size:.9rem}
-.gallery-overlay .gallery-tag{display:inline-block;background:var(--blue-500);color:#fff;font-size:.7rem;font-weight:700;padding:4px 12px;border-radius:20px;margin-bottom:10px;text-transform:uppercase;letter-spacing:.5px}
-@media(max-width:600px){.gallery-grid{grid-template-columns:1fr}.gallery-item{aspect-ratio:3/2}}
+/* ===== GALLERY BLOCK ===== */
+.gallery-block{background:var(--sky-50)}
+.gallery-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+.gallery-card{position:relative;border-radius:var(--radius);overflow:hidden;box-shadow:0 8px 30px rgba(0,0,0,.06);aspect-ratio:4/3}
+.gallery-card img{width:100%;height:100%;object-fit:cover;transition:transform .7s}
+.gallery-card:hover img{transform:scale(1.08)}
+.gallery-over{position:absolute;inset:0;background:linear-gradient(0deg,rgba(7,89,133,.9) 0%,rgba(7,89,133,.2) 40%,transparent 70%);display:flex;flex-direction:column;justify-content:flex-end;padding:28px}
+.gallery-tag{display:inline-block;background:var(--sky-400);color:#fff;font-size:.65rem;font-weight:700;padding:4px 12px;border-radius:20px;text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;width:fit-content}
+.gallery-over h3{color:#fff;font-size:1.2rem;font-weight:800;margin-bottom:4px}
+.gallery-over p{color:rgba(255,255,255,.75);font-size:.85rem}
+@media(max-width:600px){.gallery-grid{grid-template-columns:1fr}}
 
-/* ===== SERVICES ===== */
-.services-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:28px}
-.service-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);padding:40px 32px;transition:all .4s cubic-bezier(.4,0,.2,1);position:relative;overflow:hidden}
-.service-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(135deg,rgba(37,99,235,.08),transparent);opacity:0;transition:opacity .4s}
-.service-card:hover{transform:translateY(-6px);border-color:rgba(37,99,235,.3);box-shadow:0 20px 50px rgba(0,0,0,.3)}
-.service-card:hover::before{opacity:1}
-.service-card-icon{width:56px;height:56px;border-radius:14px;display:flex;align-items:center;justify-content:center;margin-bottom:20px;position:relative;z-index:1}
-.service-card-icon svg{width:28px;height:28px;stroke:#fff;fill:none;stroke-width:1.5}
-.sci-1{background:linear-gradient(135deg,#1e40af,#3b82f6)}
-.sci-2{background:linear-gradient(135deg,#7c3aed,#a78bfa)}
-.sci-3{background:linear-gradient(135deg,#b45309,#f59e0b)}
-.sci-4{background:linear-gradient(135deg,#047857,#10b981)}
-.service-card h3{color:#fff;font-size:1.2rem;font-weight:700;margin-bottom:10px;position:relative;z-index:1}
-.service-card p{color:rgba(255,255,255,.6);font-size:.92rem;position:relative;z-index:1;line-height:1.7}
+/* ===== SERVICES BLOCK ===== */
+.services-block{background:linear-gradient(160deg,var(--sky-700) 0%,var(--sky-500) 100%)}
+.services-block .block-mesh{position:absolute;inset:0;background-image:radial-gradient(at 10% 90%,rgba(255,255,255,.05) 0%,transparent 50%),radial-gradient(at 90% 10%,rgba(34,211,238,.08) 0%,transparent 50%)}
+.services-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;position:relative;z-index:2}
+.svc{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:var(--radius);padding:36px 28px;transition:all .4s}
+.svc:hover{background:rgba(255,255,255,.12);transform:translateY(-4px);border-color:rgba(255,255,255,.2)}
+.svc-icon{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;margin-bottom:18px;background:rgba(255,255,255,.1)}
+.svc-icon svg{width:26px;height:26px;stroke:#fff;fill:none;stroke-width:1.5}
+.svc h3{color:#fff;font-size:1.1rem;font-weight:700;margin-bottom:8px}
+.svc p{color:rgba(255,255,255,.65);font-size:.9rem;line-height:1.7}
 @media(max-width:600px){.services-grid{grid-template-columns:1fr}}
 
-/* ===== PROCESS ===== */
-.process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;position:relative}
-.process-grid::before{content:'';position:absolute;top:44px;left:12%;right:12%;height:2px;background:linear-gradient(90deg,var(--blue-100),var(--blue-500),var(--blue-100))}
-.process-step{text-align:center;position:relative;z-index:2}
-.process-num{width:56px;height:56px;margin:0 auto 20px;border-radius:50%;background:var(--blue-500);color:#fff;font-size:1.3rem;font-weight:900;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 15px rgba(37,99,235,.3),0 0 0 6px #fff}
-.process-step h3{font-size:1rem;font-weight:700;margin-bottom:6px}
-.process-step p{font-size:.85rem;color:var(--slate-500);max-width:200px;margin:0 auto}
-@media(max-width:768px){.process-grid{grid-template-columns:repeat(2,1fr);gap:40px 20px}.process-grid::before{display:none}}
+/* ===== PROCESS BLOCK ===== */
+.process-block{background:var(--white)}
+.process-timeline{display:flex;justify-content:space-between;position:relative;max-width:900px;margin:0 auto}
+.process-timeline::before{content:'';position:absolute;top:32px;left:10%;right:10%;height:2px;background:linear-gradient(90deg,var(--sky-200),var(--sky-400),var(--sky-200))}
+.p-step{flex:1;text-align:center;position:relative;z-index:2;padding:0 12px}
+.p-num{width:64px;height:64px;margin:0 auto 20px;border-radius:50%;background:linear-gradient(135deg,var(--sky-400),var(--sky-500));color:#fff;font-size:1.4rem;font-weight:900;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 15px rgba(14,165,233,.25),0 0 0 6px #fff}
+.p-step h3{font-size:.95rem;font-weight:700;margin-bottom:6px;color:var(--sky-800)}
+.p-step p{font-size:.82rem;color:var(--slate-500);max-width:180px;margin:0 auto;line-height:1.5}
+@media(max-width:768px){.process-timeline{flex-wrap:wrap;gap:40px}.process-timeline::before{display:none}.p-step{flex:0 0 50%}}
 
-/* ===== ADVANTAGES ===== */
-.adv-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
-.adv-card{background:#fff;border-radius:var(--radius);padding:36px 24px;text-align:center;box-shadow:0 2px 12px rgba(0,0,0,.04);border:1px solid rgba(0,0,0,.04);transition:all .4s}
-.adv-card:hover{transform:translateY(-8px);box-shadow:var(--shadow-lg);border-color:var(--blue-100)}
-.adv-icon-wrap{width:72px;height:72px;margin:0 auto 20px;border-radius:20px;display:flex;align-items:center;justify-content:center;position:relative}
-.adv-icon-wrap::after{content:'';position:absolute;inset:0;border-radius:20px;background:inherit;opacity:.15;transform:rotate(6deg)}
-.adv-icon-wrap svg{width:32px;height:32px;stroke:#fff;fill:none;stroke-width:1.5;position:relative;z-index:1}
-.aw-1{background:linear-gradient(135deg,#2563eb,#38bdf8)}
-.aw-2{background:linear-gradient(135deg,#16a34a,#4ade80)}
-.aw-3{background:linear-gradient(135deg,#d97706,#fbbf24)}
-.aw-4{background:linear-gradient(135deg,#7c3aed,#a78bfa)}
-.adv-card h3{font-size:1.05rem;font-weight:700;margin-bottom:6px}
-.adv-card p{font-size:.88rem;color:var(--slate-500);line-height:1.6}
+/* ===== PARALLAX ===== */
+.parallax-block{position:relative;padding:0}
+.parallax-bg{position:absolute;inset:-30%;background:url('img/drilling2.jpg') center/cover;will-change:transform}
+.parallax-over{position:absolute;inset:0;background:linear-gradient(135deg,rgba(7,89,133,.88),rgba(14,165,233,.8))}
+.parallax-inner{position:relative;z-index:2;max-width:600px;margin:0 auto;text-align:center;padding:0 20px}
+.parallax-inner h2{color:#fff;font-size:clamp(1.8rem,4vw,2.8rem);margin-bottom:18px;line-height:1.12}
+.parallax-inner p{color:rgba(255,255,255,.8);font-size:1.1rem;margin-bottom:36px}
+
+/* ===== ADVANTAGES BLOCK ===== */
+.adv-block{background:var(--sky-50)}
+.adv-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.adv{background:#fff;border-radius:var(--radius);padding:36px 22px;text-align:center;border:1px solid var(--sky-100);transition:all .4s}
+.adv:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(14,165,233,.1);border-color:var(--sky-200)}
+.adv-ic{width:68px;height:68px;margin:0 auto 18px;border-radius:18px;display:flex;align-items:center;justify-content:center;position:relative}
+.adv-ic::after{content:'';position:absolute;inset:0;border-radius:18px;background:inherit;opacity:.12;transform:rotate(8deg);z-index:0}
+.adv-ic svg{width:30px;height:30px;stroke:#fff;fill:none;stroke-width:1.5;position:relative;z-index:1}
+.ai-1{background:linear-gradient(135deg,var(--sky-400),var(--sky-500))}
+.ai-2{background:linear-gradient(135deg,var(--green-500),#34d399)}
+.ai-3{background:linear-gradient(135deg,#f59e0b,#fbbf24)}
+.ai-4{background:linear-gradient(135deg,var(--sky-600),var(--sky-700))}
+.adv h3{font-size:1rem;font-weight:700;margin-bottom:6px;color:var(--sky-800)}
+.adv p{font-size:.85rem;color:var(--slate-500);line-height:1.6}
 @media(max-width:768px){.adv-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:500px){.adv-grid{grid-template-columns:1fr}}
+@media(max-width:480px){.adv-grid{grid-template-columns:1fr}}
 
-/* ===== PARALLAX BREAK ===== */
-.parallax-break{position:relative;padding:120px 24px;text-align:center;overflow:hidden}
-.parallax-break-bg{position:absolute;inset:-30%;background:url('img/drilling2.jpg') center/cover;will-change:transform}
-.parallax-break-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(12,25,41,.88),rgba(37,99,235,.75))}
-.parallax-break-content{position:relative;z-index:2;max-width:650px;margin:0 auto}
-.parallax-break-content h2{color:#fff;font-size:clamp(2rem,4vw,3rem);margin-bottom:20px;line-height:1.15}
-.parallax-break-content p{color:rgba(255,255,255,.8);font-size:1.15rem;margin-bottom:36px}
-.parallax-break-content .btn-primary{font-size:1.15rem;padding:18px 44px}
-
-/* ===== LOCATIONS ===== */
-.locations-wrap{background:#fff;border-radius:var(--radius);padding:48px;box-shadow:var(--shadow-lg);border:1px solid rgba(0,0,0,.04)}
-.loc-tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:32px;justify-content:center}
-.loc-tab{padding:8px 20px;border-radius:50px;font-size:.85rem;font-weight:600;color:var(--slate-500);background:var(--slate-100);border:none;cursor:pointer;transition:all .3s;font-family:inherit}
-.loc-tab.active,.loc-tab:hover{background:var(--blue-500);color:#fff}
-.loc-district{margin-bottom:28px;display:none}
+/* ===== LOCATIONS BLOCK ===== */
+.loc-block{background:var(--white)}
+.loc-wrap{background:var(--sky-50);border-radius:var(--radius);padding:44px;border:1px solid var(--sky-100)}
+.loc-tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px;justify-content:center}
+.loc-tab{padding:8px 18px;border-radius:50px;font-size:.82rem;font-weight:600;color:var(--slate-500);background:var(--white);border:1px solid var(--sky-200);cursor:pointer;transition:all .3s;font-family:inherit}
+.loc-tab.active,.loc-tab:hover{background:var(--sky-500);color:#fff;border-color:var(--sky-500)}
+.loc-district{margin-bottom:24px;display:none}
 .loc-district.active{display:block}
-.loc-district h3{font-size:1.15rem;color:var(--blue-700);font-weight:700;margin-bottom:14px;padding-bottom:10px;border-bottom:2px solid var(--blue-100);display:flex;align-items:center;gap:10px}
-.loc-district h3 svg{width:20px;height:20px;stroke:var(--blue-500);fill:none;stroke-width:2}
-.loc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:4px 28px}
-.loc-grid span{padding:8px 0;font-size:.92rem;color:var(--slate-700);border-bottom:1px solid var(--slate-100);transition:all .2s;cursor:default}
-.loc-grid span:hover{color:var(--blue-500);padding-left:6px}
-@media(max-width:600px){.locations-wrap{padding:28px 20px}}
+.loc-district h3{font-size:1.05rem;color:var(--sky-700);font-weight:700;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid var(--sky-200);display:flex;align-items:center;gap:8px}
+.loc-district h3 svg{width:18px;height:18px;stroke:var(--sky-500);fill:none;stroke-width:2}
+.loc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:4px 24px}
+.loc-grid span{padding:7px 0;font-size:.88rem;color:var(--slate-600);border-bottom:1px solid var(--sky-100);transition:all .2s}
+.loc-grid span:hover{color:var(--sky-600);padding-left:4px}
+@media(max-width:600px){.loc-wrap{padding:24px 18px}}
 
-/* ===== CONTACT ===== */
-.contact-block{position:relative;border-radius:24px;overflow:hidden;padding:100px 24px;text-align:center}
-.contact-bg{position:absolute;inset:0;background:linear-gradient(135deg,var(--blue-800),var(--blue-500),#0ea5e9);background-size:300% 300%;animation:gradientMove 10s ease infinite}
-@keyframes gradientMove{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
-.contact-dots{position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.08) 1px,transparent 1px);background-size:24px 24px}
-.contact-glow{position:absolute;width:400px;height:400px;border-radius:50%;background:rgba(255,255,255,.06);filter:blur(80px);top:-20%;right:-10%}
-.contact-inner{position:relative;z-index:2;max-width:600px;margin:0 auto}
-.contact-inner h2{color:#fff;font-size:clamp(2rem,4vw,2.8rem);margin-bottom:14px}
-.contact-inner p{color:rgba(255,255,255,.8);font-size:1.1rem;margin-bottom:36px}
-.phone-big{display:inline-flex;align-items:center;gap:14px;background:#fff;color:var(--blue-800);font-size:clamp(1.3rem,3vw,1.8rem);font-weight:900;padding:20px 48px;border-radius:100px;text-decoration:none;box-shadow:0 8px 30px rgba(0,0,0,.2);transition:all .35s}
-.phone-big:hover{transform:scale(1.05) translateY(-2px);box-shadow:0 12px 40px rgba(0,0,0,.3)}
-.phone-big svg{width:28px;height:28px;flex-shrink:0}
-.contact-sub{color:rgba(255,255,255,.5);font-size:.85rem;margin-top:20px}
+/* ===== CONTACT BLOCK ===== */
+.contact-block{background:var(--sky-50)}
+.contact-card{position:relative;border-radius:24px;overflow:hidden;padding:90px 24px;text-align:center}
+.contact-bg{position:absolute;inset:0;background:linear-gradient(135deg,var(--sky-600),var(--sky-400),var(--cyan-400));background-size:300% 300%;animation:gradShift 10s ease infinite}
+@keyframes gradShift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+.contact-dots{position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.06) 1px,transparent 1px);background-size:20px 20px}
+.contact-inner{position:relative;z-index:2;max-width:550px;margin:0 auto}
+.contact-inner h2{color:#fff;font-size:clamp(1.8rem,4vw,2.6rem);margin-bottom:12px}
+.contact-inner>p{color:rgba(255,255,255,.8);font-size:1.05rem;margin-bottom:32px}
+.phone-big{display:inline-flex;align-items:center;gap:12px;background:#fff;color:var(--sky-700);font-size:clamp(1.2rem,3vw,1.6rem);font-weight:900;padding:20px 44px;border-radius:100px;text-decoration:none;box-shadow:0 8px 30px rgba(0,0,0,.12);transition:all .35s}
+.phone-big:hover{transform:scale(1.04) translateY(-2px);box-shadow:0 12px 40px rgba(0,0,0,.18)}
+.phone-big svg{width:26px;height:26px;flex-shrink:0}
+.contact-sub{color:rgba(255,255,255,.5);font-size:.82rem;margin-top:18px}
 
 /* ===== FOOTER ===== */
-footer{background:var(--blue-900);color:rgba(255,255,255,.4);text-align:center;padding:40px 20px;font-size:.85rem}
-footer a{color:rgba(255,255,255,.6);text-decoration:none}
+footer{background:var(--sky-800);color:rgba(255,255,255,.45);text-align:center;padding:36px 20px;font-size:.82rem}
 
 /* ===== ANIMATIONS ===== */
-@keyframes fadeDown{from{opacity:0;transform:translateY(-30px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
 @keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
 .reveal{opacity:0;transform:translateY(50px);transition:all .9s cubic-bezier(.16,1,.3,1)}
 .reveal.visible{opacity:1;transform:translateY(0)}
-.reveal-left{opacity:0;transform:translateX(-60px);transition:all .9s cubic-bezier(.16,1,.3,1)}
+.reveal-left{opacity:0;transform:translateX(-50px);transition:all .9s cubic-bezier(.16,1,.3,1)}
 .reveal-left.visible{opacity:1;transform:translateX(0)}
-.reveal-right{opacity:0;transform:translateX(60px);transition:all .9s cubic-bezier(.16,1,.3,1)}
+.reveal-right{opacity:0;transform:translateX(50px);transition:all .9s cubic-bezier(.16,1,.3,1)}
 .reveal-right.visible{opacity:1;transform:translateX(0)}
-.stagger>*{opacity:0;transform:translateY(30px);transition:all .7s cubic-bezier(.16,1,.3,1)}
+.stagger>*{opacity:0;transform:translateY(25px);transition:all .7s cubic-bezier(.16,1,.3,1)}
 .stagger.visible>*{opacity:1;transform:translateY(0)}
 .stagger.visible>*:nth-child(1){transition-delay:.05s}
-.stagger.visible>*:nth-child(2){transition-delay:.15s}
-.stagger.visible>*:nth-child(3){transition-delay:.25s}
-.stagger.visible>*:nth-child(4){transition-delay:.35s}
+.stagger.visible>*:nth-child(2){transition-delay:.12s}
+.stagger.visible>*:nth-child(3){transition-delay:.2s}
+.stagger.visible>*:nth-child(4){transition-delay:.28s}
 </style>
 </head>
 <body>
@@ -209,66 +202,60 @@ footer a{color:rgba(255,255,255,.6);text-decoration:none}
 <nav class="navbar" id="navbar">
   <div class="container nav-inner">
     <a href="#" class="nav-logo">
-      <svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="14" stroke="#38bdf8" stroke-width="2"/><path d="M16 6v20M10 12l6-6 6 6M10 20l6 6 6-6" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
+      <svg viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="12" stroke="currentColor" stroke-width="1.5" opacity=".5"/><path d="M14 4v20M9 10l5-5 5 5M9 18l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
       Свердловини
     </a>
     <a href="tel:+380989009020" class="nav-phone">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-      +38 (098) 900-90-20
+      098 900 90 20
     </a>
   </div>
 </nav>
 
 <!-- HERO -->
-<header class="hero">
-  <div class="hero-bg" data-parallax="0.3"></div>
-  <div class="hero-overlay"></div>
-  <div class="hero-grid"></div>
+<header class="hero block">
+  <div class="hero-mesh"></div>
   <div class="hero-particles" id="particles"></div>
-  <div class="hero-glow hero-glow-1"></div>
-  <div class="hero-glow hero-glow-2"></div>
+  <div class="hero-waves">
+    <svg viewBox="0 0 1440 120" preserveAspectRatio="none"><path d="M0,60 C360,120 1080,0 1440,60 L1440,120 L0,120Z" fill="var(--sky-50)" opacity=".6"/><path d="M0,80 C480,20 960,100 1440,40 L1440,120 L0,120Z" fill="var(--sky-50)"/></svg>
+  </div>
   <div class="hero-content">
-    <div class="hero-badge">Працюємо по Київській області</div>
-    <h1>Буріння<br><span>свердловин</span><br>на воду</h1>
+    <div class="hero-badge">Київська область</div>
+    <h1>Буріння<br><em>свердловин</em><br>на воду</h1>
     <p class="subtitle">Професійне буріння малогабаритною установкою. Виїзд, консультація та оцінка — безкоштовно.</p>
-    <div class="hero-price">
-      <div class="price-tag">800 <small>грн/метр</small></div>
-    </div>
+    <div class="price-pill">800 <small>грн / метр</small></div>
     <div class="hero-cta">
-      <a href="tel:+380989009020" class="btn btn-primary">
+      <a href="tel:+380989009020" class="btn btn-white">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
         Зателефонувати
       </a>
-      <a href="#services" class="btn btn-ghost">Наші послуги</a>
+      <a href="#services" class="btn btn-outline">Наші послуги</a>
     </div>
   </div>
-  <div class="scroll-hint">
-    <span>scroll</span>
-    <div class="scroll-line"></div>
-  </div>
+  <div class="scroll-hint"><span>scroll</span><div class="scroll-line"></div></div>
 </header>
 
 <!-- STATS -->
-<div class="stats-section">
+<div class="stats-block">
   <div class="container">
     <div class="stats-grid stagger">
       <div class="stat-card">
-        <div class="stat-icon stat-icon-1"><svg viewBox="0 0 24 24"><path d="M12 2v20M2 12h20" stroke-linecap="round"/></svg></div>
+        <div class="stat-icon si-1"><svg viewBox="0 0 24 24"><path d="M12 2v20M2 12h20" stroke-linecap="round"/></svg></div>
         <div class="stat-number" data-count="150">0<span>м</span></div>
         <div class="stat-label">Максимальна глибина</div>
       </div>
       <div class="stat-card">
-        <div class="stat-icon stat-icon-2"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zM12 6v6l4 2"/></svg></div>
+        <div class="stat-icon si-2"><svg viewBox="0 0 24 24"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
         <div class="stat-number" data-count="800">0<span>грн</span></div>
         <div class="stat-label">Вартість за метр</div>
       </div>
       <div class="stat-card">
-        <div class="stat-icon stat-icon-3"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+        <div class="stat-icon si-3"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
         <div class="stat-number">1–3<span>дні</span></div>
         <div class="stat-label">Термін виконання</div>
       </div>
       <div class="stat-card">
-        <div class="stat-icon stat-icon-4"><svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14M22 4L12 14.01l-3-3"/></svg></div>
+        <div class="stat-icon si-4"><svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14M22 4L12 14.01l-3-3"/></svg></div>
         <div class="stat-number" data-count="100">0<span>%</span></div>
         <div class="stat-label">Гарантія на воду</div>
       </div>
@@ -277,28 +264,28 @@ footer a{color:rgba(255,255,255,.6);text-decoration:none}
 </div>
 
 <!-- GALLERY -->
-<div class="section section-gray">
+<div class="block gallery-block">
   <div class="container">
     <div class="section-header">
-      <div class="section-label reveal">Портфоліо</div>
+      <div class="section-tag reveal">Портфоліо</div>
       <h2 class="reveal">Наша робота</h2>
-      <p class="section-desc reveal">Малогабаритні бурові установки — ефективне буріння на будь-яких ділянках</p>
+      <p class="section-desc reveal">Малогабаритні установки — ефективне буріння на будь-яких ділянках</p>
     </div>
     <div class="gallery-grid">
-      <div class="gallery-item reveal-left">
+      <div class="gallery-card reveal-left">
         <img src="img/drilling1.jpg" alt="Малогабаритна бурова установка" loading="lazy">
-        <div class="gallery-overlay">
+        <div class="gallery-over">
           <span class="gallery-tag">МГБУ</span>
           <h3>Малогабаритна установка</h3>
-          <p>Компактне обладнання для роботи на обмежених ділянках</p>
+          <p>Компактне обладнання для обмежених ділянок</p>
         </div>
       </div>
-      <div class="gallery-item reveal-right">
+      <div class="gallery-card reveal-right">
         <img src="img/drilling2.jpg" alt="Буріння свердловини" loading="lazy">
-        <div class="gallery-overlay">
+        <div class="gallery-over">
           <span class="gallery-tag">Процес</span>
           <h3>Буріння свердловини</h3>
-          <p>Професійне обладнання для буріння на будь-яку глибину</p>
+          <p>Професійне обладнання на будь-яку глибину</p>
         </div>
       </div>
     </div>
@@ -306,127 +293,128 @@ footer a{color:rgba(255,255,255,.6);text-decoration:none}
 </div>
 
 <!-- SERVICES -->
-<div class="section section-dark" id="services">
-  <div class="container">
+<div class="block services-block dark-section" id="services">
+  <div class="block-mesh"></div>
+  <div class="container" style="position:relative;z-index:2">
     <div class="section-header">
-      <div class="section-label reveal">Що ми робимо</div>
+      <div class="section-tag reveal">Що ми робимо</div>
       <h2 class="reveal">Наші послуги</h2>
-      <p class="section-desc reveal">Повний цикл робіт — від розвідки ґрунту до підключення води у ваш будинок</p>
+      <p class="section-desc reveal">Повний цикл — від розвідки до підключення води у ваш будинок</p>
     </div>
     <div class="services-grid stagger">
-      <div class="service-card">
-        <div class="service-card-icon sci-1"><svg viewBox="0 0 24 24"><path d="M12 2v20M2 12h20M12 2l4 4-4 4M12 14l4 4-4 4"/></svg></div>
+      <div class="svc">
+        <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M12 2v20M2 12h20M12 2l4 4-4 4M12 14l4 4-4 4"/></svg></div>
         <h3>Буріння свердловин</h3>
-        <p>Буримо свердловини на воду глибиною від 10 до 150 метрів. Малогабаритні та повнорозмірні установки. Працюємо навіть у важкодоступних місцях.</p>
+        <p>Глибиною від 10 до 150 метрів. Малогабаритні та повнорозмірні установки. Працюємо у важкодоступних місцях.</p>
       </div>
-      <div class="service-card">
-        <div class="service-card-icon sci-2"><svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg></div>
-        <h3>Облаштування свердловин</h3>
-        <p>Встановлення обсадних труб, фільтрів, насосного обладнання. Монтаж кесона та підключення до водопроводу будинку під ключ.</p>
+      <div class="svc">
+        <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg></div>
+        <h3>Облаштування</h3>
+        <p>Обсадні труби, фільтри, насоси. Монтаж кесона та підключення до водопроводу будинку під ключ.</p>
       </div>
-      <div class="service-card">
-        <div class="service-card-icon sci-3"><svg viewBox="0 0 24 24"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1zM4 22v-7"/></svg></div>
-        <h3>Ремонт та обслуговування</h3>
-        <p>Чистка, промивка, заміна насосів. Відновлення дебіту старих свердловин. Діагностика та усунення несправностей.</p>
+      <div class="svc">
+        <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1zM4 22v-7"/></svg></div>
+        <h3>Ремонт</h3>
+        <p>Чистка, промивка, заміна насосів. Відновлення дебіту старих свердловин. Діагностика несправностей.</p>
       </div>
-      <div class="service-card">
-        <div class="service-card-icon sci-4"><svg viewBox="0 0 24 24"><path d="M10 2v7.527a2 2 0 01-1.175 1.821l-4.053 1.826A2 2 0 003.6 15l.28 1.966a2 2 0 001.98 1.701h12.28a2 2 0 001.98-1.701L20.4 15a2 2 0 00-1.175-1.826l-4.053-1.826A2 2 0 0114 9.527V2M8.5 2h7"/></svg></div>
+      <div class="svc">
+        <div class="svc-icon"><svg viewBox="0 0 24 24"><path d="M10 2v7.527a2 2 0 01-1.175 1.821l-4.053 1.826A2 2 0 003.6 15l.28 1.966a2 2 0 001.98 1.701h12.28a2 2 0 001.98-1.701L20.4 15a2 2 0 00-1.175-1.826l-4.053-1.826A2 2 0 0114 9.527V2M8.5 2h7"/></svg></div>
         <h3>Аналіз води</h3>
-        <p>Лабораторний аналіз якості води зі свердловини. Підбір оптимальної системи фільтрації під ваші потреби та бюджет.</p>
+        <p>Лабораторний аналіз якості. Підбір оптимальної системи фільтрації під ваші потреби та бюджет.</p>
       </div>
     </div>
   </div>
 </div>
 
 <!-- PROCESS -->
-<div class="section section-white">
+<div class="block process-block">
   <div class="container">
     <div class="section-header">
-      <div class="section-label reveal">Етапи</div>
+      <div class="section-tag reveal">Етапи</div>
       <h2 class="reveal">Як ми працюємо</h2>
-      <p class="section-desc reveal">Від першого дзвінка до чистої води — простий і прозорий процес</p>
+      <p class="section-desc reveal">Від першого дзвінка до чистої води — 4 простих кроки</p>
     </div>
-    <div class="process-grid stagger">
-      <div class="process-step">
-        <div class="process-num">1</div>
+    <div class="process-timeline stagger">
+      <div class="p-step">
+        <div class="p-num">1</div>
         <h3>Консультація</h3>
-        <p>Безкоштовний виїзд на ділянку, оцінка ґрунту та глибини</p>
+        <p>Безкоштовний виїзд, оцінка ґрунту та глибини</p>
       </div>
-      <div class="process-step">
-        <div class="process-num">2</div>
+      <div class="p-step">
+        <div class="p-num">2</div>
         <h3>Буріння</h3>
-        <p>Буріння свердловини малогабаритною установкою за 1-3 дні</p>
+        <p>Малогабаритною установкою за 1-3 дні</p>
       </div>
-      <div class="process-step">
-        <div class="process-num">3</div>
+      <div class="p-step">
+        <div class="p-num">3</div>
         <h3>Облаштування</h3>
-        <p>Монтаж труб, насосу, кесона та підключення до дому</p>
+        <p>Труби, насос, кесон, підключення до дому</p>
       </div>
-      <div class="process-step">
-        <div class="process-num">4</div>
+      <div class="p-step">
+        <div class="p-num">4</div>
         <h3>Здача</h3>
-        <p>Паспорт свердловини, гарантія та інструктаж з експлуатації</p>
+        <p>Паспорт, гарантія, інструктаж з експлуатації</p>
       </div>
     </div>
   </div>
 </div>
 
-<!-- PARALLAX BREAK -->
-<div class="parallax-break">
-  <div class="parallax-break-bg" data-parallax="0.35"></div>
-  <div class="parallax-break-overlay"></div>
-  <div class="parallax-break-content reveal">
+<!-- PARALLAX -->
+<div class="block parallax-block">
+  <div class="parallax-bg" data-parallax="0.35"></div>
+  <div class="parallax-over"></div>
+  <div class="parallax-inner reveal">
     <h2>Чиста вода — вже завтра на вашій ділянці</h2>
-    <p>Безкоштовна консультація, виїзд та оцінка. Гарантуємо результат або повертаємо кошти.</p>
-    <a href="tel:+380989009020" class="btn btn-primary">
+    <p>Безкоштовна консультація та виїзд. Гарантуємо результат або повертаємо кошти.</p>
+    <a href="tel:+380989009020" class="btn btn-white" style="font-size:1.1rem;padding:18px 40px">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-      Зателефонувати зараз
+      Зателефонувати
     </a>
   </div>
 </div>
 
 <!-- ADVANTAGES -->
-<div class="section section-gray">
+<div class="block adv-block">
   <div class="container">
     <div class="section-header">
-      <div class="section-label reveal">Переваги</div>
+      <div class="section-tag reveal">Переваги</div>
       <h2 class="reveal">Чому обирають нас</h2>
-      <p class="section-desc reveal">Прозорі умови, якісна робота та гарантований результат</p>
+      <p class="section-desc reveal">Прозорі умови, якісна робота, гарантований результат</p>
     </div>
     <div class="adv-grid stagger">
-      <div class="adv-card">
-        <div class="adv-icon-wrap aw-1"><svg viewBox="0 0 24 24"><path d="M12 2.69l5.66 5.66a8 8 0 11-11.31 0z"/></svg></div>
+      <div class="adv">
+        <div class="adv-ic ai-1"><svg viewBox="0 0 24 24"><path d="M12 2.69l5.66 5.66a8 8 0 11-11.31 0z"/></svg></div>
         <h3>Гарантія на воду</h3>
-        <p>Гарантуємо наявність води або повертаємо кошти повністю</p>
+        <p>Гарантуємо наявність води або повне повернення коштів</p>
       </div>
-      <div class="adv-card">
-        <div class="adv-icon-wrap aw-2"><svg viewBox="0 0 24 24"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
+      <div class="adv">
+        <div class="adv-ic ai-2"><svg viewBox="0 0 24 24"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
         <h3>Фіксована ціна</h3>
-        <p>800 грн за метр — жодних прихованих платежів і доплат</p>
+        <p>800 грн за метр — жодних прихованих платежів</p>
       </div>
-      <div class="adv-card">
-        <div class="adv-icon-wrap aw-3"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+      <div class="adv">
+        <div class="adv-ic ai-3"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
         <h3>Швидко</h3>
-        <p>Буріння за 1-3 дні залежно від глибини та типу ґрунту</p>
+        <p>Буріння за 1-3 дні залежно від глибини ґрунту</p>
       </div>
-      <div class="adv-card">
-        <div class="adv-icon-wrap aw-4"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8zM14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg></div>
+      <div class="adv">
+        <div class="adv-ic ai-4"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8zM14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg></div>
         <h3>Документи</h3>
-        <p>Паспорт свердловини та всі необхідні документи відразу</p>
+        <p>Паспорт свердловини та всі документи одразу</p>
       </div>
     </div>
   </div>
 </div>
 
 <!-- LOCATIONS -->
-<div class="section section-white">
+<div class="block loc-block">
   <div class="container">
     <div class="section-header">
-      <div class="section-label reveal">Географія</div>
+      <div class="section-tag reveal">Географія</div>
       <h2 class="reveal">Де ми працюємо</h2>
-      <p class="section-desc reveal">Вся Київська область — безкоштовний виїзд на об'єкт</p>
+      <p class="section-desc reveal">Вся Київська область — безкоштовний виїзд</p>
     </div>
-    <div class="locations-wrap reveal">
+    <div class="loc-wrap reveal">
       <div class="loc-tabs" id="locTabs">
         <button class="loc-tab active" data-district="all">Всі райони</button>
         <button class="loc-tab" data-district="vasylkiv">Васильківський</button>
@@ -437,132 +425,46 @@ footer a{color:rgba(255,255,255,.6);text-decoration:none}
         <button class="loc-tab" data-district="brovary">Броварський</button>
         <button class="loc-tab" data-district="vyshhorod">Вишгородський</button>
       </div>
-
-      <div class="loc-district active" data-name="vasylkiv">
-        <h3><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>Васильківський район</h3>
-        <div class="loc-grid">
-          <span>Васильків</span><span>Калинівка</span><span>Глеваха</span><span>Чабани</span><span>Хлепча</span><span>Велика Олександрівка</span><span>Мала Олександрівка</span><span>Крушинка</span><span>Грузьке</span><span>Митниця</span><span>Застугна</span><span>Шевченкове</span><span>Руді</span><span>Мархалівка</span><span>Пологи</span><span>Кожухівка</span><span>Бакумівка</span><span>Борова</span><span>Луб'янка</span><span>Вишневе</span><span>Крюківщина</span><span>Софіївська Борщагівка</span><span>Петропавлівська Борщагівка</span><span>Тарасівка</span><span>Іванковичі</span>
-        </div>
-      </div>
-
-      <div class="loc-district" data-name="bila">
-        <h3><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>Білоцерківський район</h3>
-        <div class="loc-grid">
-          <span>Біла Церква</span><span>Узин</span><span>Сквира</span><span>Тараща</span><span>Володарка</span><span>Ставище</span><span>Медвин</span><span>Рокитне</span><span>Жашків</span><span>Тетіїв</span><span>Кашперівка</span><span>Озерна</span><span>Фурси</span><span>Острів</span><span>Шкарівка</span><span>Олійникова Слобода</span><span>Піщана</span><span>Гребінки</span><span>Томашівка</span><span>Половецьке</span>
-        </div>
-      </div>
-
-      <div class="loc-district" data-name="obukhiv">
-        <h3><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>Обухівський район</h3>
-        <div class="loc-grid">
-          <span>Обухів</span><span>Українка</span><span>Кагарлик</span><span>Ржищів</span><span>Миронівка</span><span>Трипілля</span><span>Халеп'я</span><span>Плюти</span><span>Григорівка</span><span>Козин</span><span>Підгірці</span><span>Романків</span><span>Красне</span><span>Стайки</span>
-        </div>
-      </div>
-
-      <div class="loc-district" data-name="fastiv">
-        <h3><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>Фастівський район</h3>
-        <div class="loc-grid">
-          <span>Фастів</span><span>Боярка</span><span>Тишківка</span><span>Томашівка</span><span>Кодаки</span><span>Мотовилівка</span><span>Борова</span><span>Пархомівка</span><span>Велика Снітинка</span><span>Мала Снітинка</span><span>П'ятигори</span><span>Малютянка</span><span>Юрівка</span><span>Плесецьке</span>
-        </div>
-      </div>
-
-      <div class="loc-district" data-name="bucha">
-        <h3><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>Бучанський район</h3>
-        <div class="loc-grid">
-          <span>Буча</span><span>Ірпінь</span><span>Ворзель</span><span>Гостомель</span><span>Коцюбинське</span><span>Макарів</span><span>Клавдієво-Тарасове</span><span>Немішаєве</span><span>Бородянка</span><span>Пісківка</span><span>Загальці</span><span>Мироцьке</span><span>Дмитрівка</span><span>Горенка</span>
-        </div>
-      </div>
-
-      <div class="loc-district" data-name="brovary">
-        <h3><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>Броварський район</h3>
-        <div class="loc-grid">
-          <span>Бровари</span><span>Бориспіль</span><span>Березань</span><span>Яготин</span><span>Переяслав</span><span>Баришівка</span><span>Згурівка</span><span>Велика Дмитровичі</span><span>Калита</span><span>Літки</span><span>Княжичі</span><span>Требухів</span><span>Красилівка</span><span>Гоголів</span>
-        </div>
-      </div>
-
-      <div class="loc-district" data-name="vyshhorod">
-        <h3><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>Вишгородський район</h3>
-        <div class="loc-grid">
-          <span>Вишгород</span><span>Славутич</span><span>Іванків</span><span>Димер</span><span>Нові Петрівці</span><span>Хотянівка</span><span>Лютіж</span><span>Козаровичі</span><span>Стоянка</span><span>Пірново</span>
-        </div>
-      </div>
+      <div class="loc-district active" data-name="vasylkiv"><h3><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>Васильківський район</h3><div class="loc-grid"><span>Васильків</span><span>Калинівка</span><span>Глеваха</span><span>Чабани</span><span>Хлепча</span><span>Велика Олександрівка</span><span>Мала Олександрівка</span><span>Крушинка</span><span>Грузьке</span><span>Митниця</span><span>Застугна</span><span>Шевченкове</span><span>Руді</span><span>Мархалівка</span><span>Пологи</span><span>Кожухівка</span><span>Бакумівка</span><span>Борова</span><span>Луб'янка</span><span>Вишневе</span><span>Крюківщина</span><span>Софіївська Борщагівка</span><span>Петропавлівська Борщагівка</span><span>Тарасівка</span><span>Іванковичі</span></div></div>
+      <div class="loc-district" data-name="bila"><h3><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>Білоцерківський район</h3><div class="loc-grid"><span>Біла Церква</span><span>Узин</span><span>Сквира</span><span>Тараща</span><span>Володарка</span><span>Ставище</span><span>Медвин</span><span>Рокитне</span><span>Жашків</span><span>Тетіїв</span><span>Кашперівка</span><span>Озерна</span><span>Фурси</span><span>Острів</span><span>Шкарівка</span><span>Олійникова Слобода</span><span>Піщана</span><span>Гребінки</span><span>Томашівка</span><span>Половецьке</span></div></div>
+      <div class="loc-district" data-name="obukhiv"><h3><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>Обухівський район</h3><div class="loc-grid"><span>Обухів</span><span>Українка</span><span>Кагарлик</span><span>Ржищів</span><span>Миронівка</span><span>Трипілля</span><span>Халеп'я</span><span>Плюти</span><span>Григорівка</span><span>Козин</span><span>Підгірці</span><span>Романків</span><span>Красне</span><span>Стайки</span></div></div>
+      <div class="loc-district" data-name="fastiv"><h3><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>Фастівський район</h3><div class="loc-grid"><span>Фастів</span><span>Боярка</span><span>Тишківка</span><span>Томашівка</span><span>Кодаки</span><span>Мотовилівка</span><span>Борова</span><span>Пархомівка</span><span>Велика Снітинка</span><span>Мала Снітинка</span><span>П'ятигори</span><span>Малютянка</span><span>Юрівка</span><span>Плесецьке</span></div></div>
+      <div class="loc-district" data-name="bucha"><h3><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>Бучанський район</h3><div class="loc-grid"><span>Буча</span><span>Ірпінь</span><span>Ворзель</span><span>Гостомель</span><span>Коцюбинське</span><span>Макарів</span><span>Клавдієво-Тарасове</span><span>Немішаєве</span><span>Бородянка</span><span>Пісківка</span><span>Загальці</span><span>Мироцьке</span><span>Дмитрівка</span><span>Горенка</span></div></div>
+      <div class="loc-district" data-name="brovary"><h3><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>Броварський район</h3><div class="loc-grid"><span>Бровари</span><span>Бориспіль</span><span>Березань</span><span>Яготин</span><span>Переяслав</span><span>Баришівка</span><span>Згурівка</span><span>Велика Дмитровичі</span><span>Калита</span><span>Літки</span><span>Княжичі</span><span>Требухів</span><span>Красилівка</span><span>Гоголів</span></div></div>
+      <div class="loc-district" data-name="vyshhorod"><h3><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>Вишгородський район</h3><div class="loc-grid"><span>Вишгород</span><span>Славутич</span><span>Іванків</span><span>Димер</span><span>Нові Петрівці</span><span>Хотянівка</span><span>Лютіж</span><span>Козаровичі</span><span>Стоянка</span><span>Пірново</span></div></div>
     </div>
   </div>
 </div>
 
 <!-- CONTACT -->
-<div class="section">
+<div class="block contact-block">
   <div class="container">
-    <div class="contact-block reveal">
+    <div class="contact-card reveal">
       <div class="contact-bg"></div>
       <div class="contact-dots"></div>
-      <div class="contact-glow"></div>
       <div class="contact-inner">
         <h2>Замовити буріння</h2>
-        <p>Зателефонуйте — безкоштовна консультація та виїзд на ділянку. Працюємо без вихідних.</p>
+        <p>Зателефонуйте — безкоштовна консультація та виїзд. Працюємо без вихідних.</p>
         <a href="tel:+380989009020" class="phone-big">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.79 19.79 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
           +38 (098) 900-90-20
         </a>
-        <p class="contact-sub">Працюємо щодня з 8:00 до 20:00</p>
+        <p class="contact-sub">Щодня з 8:00 до 20:00</p>
       </div>
     </div>
   </div>
 </div>
 
-<footer>
-  <div class="container">
-    &copy; 2026 Буріння свердловин на воду — Київська область
-  </div>
-</footer>
+<footer>&copy; 2026 Буріння свердловин на воду — Київська область</footer>
 
 <script>
-// Particles
-!function(){const c=document.getElementById('particles');for(let i=0;i<35;i++){const p=document.createElement('div');p.className='particle';p.style.left=Math.random()*100+'%';p.style.animationDuration=8+Math.random()*14+'s';p.style.animationDelay=Math.random()*12+'s';const s=2+Math.random()*5;p.style.width=p.style.height=s+'px';c.appendChild(p)}}();
-
-// Navbar scroll
+!function(){const c=document.getElementById('particles');for(let i=0;i<30;i++){const p=document.createElement('div');p.className='particle';p.style.left=Math.random()*100+'%';p.style.animationDuration=10+Math.random()*15+'s';p.style.animationDelay=Math.random()*12+'s';const s=2+Math.random()*4;p.style.width=p.style.height=s+'px';c.appendChild(p)}}();
 const nav=document.getElementById('navbar');
-window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>50)},{passive:true});
-
-// Scroll Reveal + counters
-const obs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(!e.isIntersecting)return;
-    e.target.classList.add('visible');
-    e.target.querySelectorAll('[data-count]').forEach(c=>{
-      const t=+c.dataset.count;let cur=0;const step=Math.ceil(t/45);
-      const timer=setInterval(()=>{cur+=step;if(cur>=t){cur=t;clearInterval(timer)}c.childNodes[0].textContent=cur},25);
-    });
-  });
-},{threshold:.12,rootMargin:'0px 0px -30px 0px'});
+window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',scrollY>50)},{passive:true});
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(!e.isIntersecting)return;e.target.classList.add('visible');e.target.querySelectorAll('[data-count]').forEach(c=>{const t=+c.dataset.count;let cur=0;const step=Math.ceil(t/50);const tm=setInterval(()=>{cur+=step;if(cur>=t){cur=t;clearInterval(tm)}c.childNodes[0].textContent=cur},22)})})},{threshold:.1,rootMargin:'0px 0px -20px 0px'});
 document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.stagger').forEach(el=>obs.observe(el));
-
-// Parallax
-window.addEventListener('scroll',()=>{
-  const st=window.pageYOffset;
-  document.querySelectorAll('[data-parallax]').forEach(el=>{
-    const speed=+el.dataset.parallax;
-    const rect=el.parentElement.getBoundingClientRect();
-    el.style.transform='translateY('+(rect.top*speed*.5)+'px) scale(1.15)';
-  });
-},{passive:true});
-
-// Location tabs
-document.getElementById('locTabs').addEventListener('click',e=>{
-  const btn=e.target.closest('.loc-tab');if(!btn)return;
-  document.querySelectorAll('.loc-tab').forEach(t=>t.classList.remove('active'));
-  btn.classList.add('active');
-  const d=btn.dataset.district;
-  document.querySelectorAll('.loc-district').forEach(el=>{
-    el.classList.toggle('active',d==='all'||el.dataset.name===d);
-  });
-});
-
-// Smooth scroll
-document.querySelectorAll('a[href^="#"]').forEach(a=>{
-  a.addEventListener('click',e=>{e.preventDefault();const t=document.querySelector(a.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth',block:'start'});});
-});
+window.addEventListener('scroll',()=>{const st=pageYOffset;document.querySelectorAll('[data-parallax]').forEach(el=>{const s=+el.dataset.parallax;const r=el.parentElement.getBoundingClientRect();el.style.transform='translateY('+r.top*s*.5+'px) scale(1.15)'})},{passive:true});
+document.getElementById('locTabs').addEventListener('click',e=>{const b=e.target.closest('.loc-tab');if(!b)return;document.querySelectorAll('.loc-tab').forEach(t=>t.classList.remove('active'));b.classList.add('active');const d=b.dataset.district;document.querySelectorAll('.loc-district').forEach(el=>{el.classList.toggle('active',d==='all'||el.dataset.name===d)})});
 </script>
-
 </body>
 </html>
