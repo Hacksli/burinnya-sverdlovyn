@@ -120,7 +120,8 @@ h2{font-size:clamp(1.8rem,4vw,2.6rem);font-weight:900;letter-spacing:-.02em;line
 .p-num{width:64px;height:64px;margin:0 auto 20px;border-radius:50%;background:linear-gradient(135deg,var(--sky-400),var(--sky-500));color:#fff;font-size:1.4rem;font-weight:900;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 15px rgba(14,165,233,.25),0 0 0 6px #fff}
 .p-step h3{font-size:.95rem;font-weight:700;margin-bottom:6px;color:var(--sky-800)}
 .p-step p{font-size:.82rem;color:var(--slate-500);max-width:180px;margin:0 auto;line-height:1.5}
-@media(max-width:768px){.process-timeline{flex-wrap:wrap;gap:40px}.process-timeline::before{display:none}.p-step{flex:0 0 50%}}
+@media(max-width:768px){.process-timeline{flex-wrap:wrap;gap:40px;justify-content:center}.process-timeline::before{display:none}.p-step{flex:0 0 45%;text-align:center}}
+@media(max-width:480px){.p-step{flex:0 0 100%}}
 
 /* ===== PARALLAX ===== */
 .parallax-block{position:relative;padding:0}
